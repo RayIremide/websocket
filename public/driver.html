@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Interface</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --dark-color-a: #667aff;
+            --dark-color-b: #7386ff;
+            --light-color: #e6e9ff;
+            --success-color: #5cb85c;
+            --error-color: #d9534f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background: var(--light-color);
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background: var(--dark-color-a);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .request-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .request-card h2 {
+            margin-bottom: 5px;
+        }
+
+        .request-card p {
+            margin-bottom: 5px;
+        }
+
+        .request-card button {
+            padding: 5px 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        .accept-btn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+        }
+
+        .accept-btn:hover {
+            background-color: #45a049;
+        }
+
+        .reject-btn {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+        }
+
+        .reject-btn:hover {
+            background-color: #f4372e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Request</h1>
+        <div class="request-card" >
+            <ul id="order-request">
+            </ul>
+            <h2 id="request-id"></h2>
+            <p id="current-location"></p>
+            <p id="destination"></p>
+            <p id="price"></p>
+            <p id="sender-name"></p>
+            <button class="accept-btn"><i class="fas fa-check-circle"></i> Accept</button>
+            <button class="reject-btn"><i class="fas fa-times-circle"></i> Reject</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/driver.js"></script>
+
+</body>
+</html>
+

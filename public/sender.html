@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sender - Make Order Request</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --dark-color-a: #667aff;
+            --dark-color-b: #7386ff;
+            --light-color: #e6e9ff;
+            --success-color: #5cb85c;
+            --error-color: #d9534f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background: var(--light-color);
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--dark-color-a);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            cursor: pointer;
+            padding: 10px 20px;
+            background: var(--error-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 25rem;
+
+        }
+
+        .btn:hover {
+            background: var(--error-color);
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type='text'],
+        input[type='number'] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px 20px;
+            background: var(--dark-color-a);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: var(--dark-color-b);
+        }
+
+        #orderPreview {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--light-color);
+            color: blue;
+            border-radius: 5px;
+        }
+
+        .preview-container {
+            margin-bottom: 20px;
+        }
+
+        .preview-container p {
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1><i class="fas fa-taxi icon"></i> Make Order Request</h1>
+            <a href="index.html" class="btn">Cancel Order</a>
+        </div>
+        
+        <form id="orderForm">
+            <label for="currentLocation">Current Location:</label><br>
+            <input type="text" id="currentLocation" name="currentLocation" required><br>
+            
+            <label for="destination">Destination:</label><br>
+            <input type="text" id="destination" name="destination" required><br>
+            
+            <label for="price">Price:</label><br>
+            <input type="number" id="price" name="price" required><br>
+            
+            <label for="senderName">Your Name:</label><br>
+            <input type="text" id="senderName" name="senderName" required><br>
+            
+            <button type="submit" onclick="previewOrder()"><i class="fas fa-eye icon"></i> Preview Order</button>
+        </form>
+
+        <div id="orderPreview">
+            <h2><i class="fas fa-info-circle icon"></i> Order Request Preview</h2>
+            <div class="preview-container">
+                <p><strong>Current Location:</strong> <span id="previewCurrentLocation"></span></p>
+                <p><strong>Destination:</strong> <span id="previewDestination"></span></p>
+                <p><strong>Price:</strong> $<span id="previewPrice"></span></p>
+                <p><strong>Your Name:</strong> <span id="previewSenderName"></span></p>
+            </div>
+
+            <button type="submit" form="orderForm"><i class="fas fa-check icon"></i> Confirm Order</button>
+            <button type="button" onclick="editOrder()"><i class="fas fa-pencil-alt icon"></i> Edit Order</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/sender.js"></script>
+</body>
+</html>
